@@ -1,11 +1,5 @@
 import React from 'react';
-import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
-import Login from './Login';
-import Profile from './Profile';
-import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
-import MyFavoriteBooks from './MyFavoriteBooks';
 import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
 import {
@@ -18,23 +12,14 @@ class App extends React.Component {
 
   render() {
     console.log('app', this.props);
-    const { user, isAuthenticated } = this.props.auth0;
-    return (
+    return(
       <>
         <Router>
           <IsLoadingAndError>
             <Header />
-            {isAuthenticated ? user.name : ''}
-            {isAuthenticated ? <LogoutButton /> : ''}
-            {isAuthenticated ? <img src={user.picture} /> : ''}
-            
             <Switch>
               <Route exact path="/">
                 {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-                {isAuthenticated ? <MyFavoriteBooks /> : <><Login /> <LoginButton /></>}
-              </Route>
-              <Route exact path="/profile">
-                {isAuthenticated ? <Profile /> : ''}
               </Route>
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             </Switch>
@@ -46,4 +31,4 @@ class App extends React.Component {
   }
 }
 
-export default withAuth0(App);
+export default App;
