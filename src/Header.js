@@ -10,18 +10,15 @@ import './Header.css';
 
 class Header extends React.Component {
   render() {
-    const { user, isAuthenticated } = this.props.auth0;
+    const { isAuthenticated } = this.props.auth0;
     return(
       // <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      //   <Nav className="container-fluid">
+
       //     <Navbar.Brand>My Favorite Books</Navbar.Brand>
-      //     <Nav.Item>
-      //       <Nav.Link to="/" >Home</Nav.Link>
-      //     </Nav.Item>
+      //     <Link to="/" >Home</Link>
       //     <Link to="/profile">Profile</Link>
       //     {isAuthenticated ? <LogoutButton className="ml-auto"/> : ''}
       //     {/* TODO: if the user is logged in, render the `LogoutButton` - if the user is logged out, render the `LoginButton` */}
-      //   </Nav>
       // </Navbar>
       <Navbar bg="dark" variant="dark">
         <Nav className="container-fluid">
