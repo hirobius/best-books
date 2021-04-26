@@ -25,15 +25,19 @@ class Header extends React.Component {
           <Nav.Item>
             <Navbar.Brand as={Link} to="/">My Favorite Books</Navbar.Brand>
           </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-          </Nav.Item>
-          <Nav.Item className="ml-auto">
-            <Nav.Link>{isAuthenticated ? <LogoutButton className="ml-auto"/> : ''}</Nav.Link>
-          </Nav.Item>
+          {isAuthenticated ?
+            <>
+              <Nav.Item>
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="ml-auto">
+                <Nav.Link><LogoutButton className="ml-auto"/></Nav.Link>
+              </Nav.Item>
+              </>:
+          ''}
         </Nav>
       </Navbar>
     );

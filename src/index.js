@@ -4,11 +4,12 @@ import App from './App';
 import { Auth0Provider } from "@auth0/auth0-react";
 import './index.css'
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="dev--ezju6ia.us.auth0.com"
-      clientId="myyXdYeC6wKIN3lgYLQu0GUBVWH2rCF1"
+      domain="dev-i0x6xv7c.us.auth0.com"
+      clientId="RHo5IuNHi63xPEM3BH7OL22242Kz2GYk"
       redirectUri={window.location.origin}
     >
     <App />
