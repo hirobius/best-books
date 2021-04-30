@@ -6,6 +6,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 import MyFavoriteBooks from './MyFavoriteBooks'
 import Login from './Login'
 import Profile from './Profile'
+import axios from 'axios'
 
 import {
   BrowserRouter as Router,
@@ -15,8 +16,22 @@ import {
 
 class App extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      books: [],
+      name: ''
+    }
+  }
+
+  
+
+  updateName = (name) => this.setState({ name });
+  
+
   render() {
     const { isAuthenticated } = this.props.auth0;
+    console.log('user:',  this.props);
     console.log('app', this.props);
     return(
       <>
