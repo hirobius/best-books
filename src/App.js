@@ -5,7 +5,8 @@ import Footer from './Footer';
 import { withAuth0 } from '@auth0/auth0-react';
 import MyFavoriteBooks from './MyFavoriteBooks'
 import Login from './Login'
-import Profile from './Profile'
+import Profile from './Profile';
+import BookForm from './BookForm'
 
 
 import {
@@ -19,12 +20,18 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      isEmptyState: true ,
       books: [],
       name: ''
     }
   }
-
-  
+  triggerAddBookState = () => {
+    this.setState({
+      ...this.state,
+      isEmptyState: false,
+      isAddBookState: true
+    })
+  }
 
   updateName = (name) => this.setState({ name });
   
@@ -40,7 +47,8 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                {isAuthenticated ? <MyFavoriteBooks /> : <Login />}
+                {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState}/> : <Login />}
+                {this.state.isAddBookState && <BookForm email={this.props.auth0.email}/>}
               </Route >
               <Route exact path="/profile"><Profile /></Route>
             </Switch>
