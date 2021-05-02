@@ -22,7 +22,7 @@ class App extends React.Component {
     this.state = {
       isEmptyState: true ,
       books: [],
-      name: ''
+      name: '',
     }
   }
   triggerAddBookState = () => {
@@ -35,7 +35,6 @@ class App extends React.Component {
 
   updateName = (name) => this.setState({ name });
   
-
   render() {
     const { isAuthenticated } = this.props.auth0;
     console.log('user:',  this.props);
@@ -48,7 +47,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState}/> : <Login />}
-                {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email}/> : ''}
+                {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email} /> : ''}
               </Route >
               <Route exact path="/profile"><Profile /></Route>
             </Switch>

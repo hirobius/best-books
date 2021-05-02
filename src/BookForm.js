@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './MyFavoriteBooks.css';
 import BestBooks from './BestBooks';
@@ -18,7 +18,23 @@ class BookForm extends React.Component {
       books: [],
       name: '',
       status:'',
+      show: false
     }
+  }
+ 
+  handleClose = () => {
+    this.setState({
+      ...this.state,
+      show: false,
+       })
+  }
+
+  handleShow = () => {
+    this.setState({
+      ...this.state,
+      show: true,
+    })
+    this.fetchUserData();
   }
 
   handleNameInput = (e) => {
@@ -30,20 +46,20 @@ class BookForm extends React.Component {
   handleStatusInput = (e) => {
     this.setState({status: e.target.value});
   }
-  // handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   this.fetchUserData();
-  // }
-  // fetchUserData = () => {
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    this.fetchUserData();
+  }
+  fetchUserData = () => {
 
-  //   axios.get('http://localhost:3002/users'/this.props.email)
-  //   .then(serverResponse => {
-  //     console.log(serverResponse.data);
-  //     this.setState({
-  //       books: serverResponse.data[0].books
-  //     })
-  //   });
-  // }
+    axios.get('http://localhost:3002/users'/this.props.email)
+    .then(serverResponse => {
+      console.log(serverResponse.data);
+      this.setState({
+        books: serverResponse.data[0].books
+      })
+    });
+  }
 
   handleCreateBook = (e) => {
     e.preventDefault();
@@ -64,13 +80,30 @@ class BookForm extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.handleCreateBook} id="addBookForm">
-        <input type="text" onInput={this.handleNameInput} placeholder="Enter your Fav Book"  />
-        <input type="text" onInput={this.handleDescriptionInput} placeholder="DEscription"  />
-        <input type="text"  onInput={this.handleStatusInput} placeholder="Published/On-Progress"  />
-        <button type="submit" className="myButton">Submit</button>
-      </form>
-      
+      <>
+        <Button variant="primary" onClick={this.handleShow}>
+          Launch demo modal
+        </Button>
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+          <form onSubmit={this.handleCreateBook} id="addBookForm">
+            <input type="text" onInput={this.handleNameInput} placeholder="Enter your Fav Book"  />
+            <input type="text" onInput={this.handleDescriptionInput} placeholder="DEscription"  />
+            <input type="text"  onInput={this.handleStatusInput} placeholder="Published/On-Progress"  />
+            <button type="submit" className="myButton">Submit</button>
+          </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
     )
   }
 }
