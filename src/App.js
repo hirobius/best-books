@@ -48,7 +48,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState}/> : <Login />}
-                {this.state.isAddBookState && <BookForm email={this.props.auth0.email}/>}
+                {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email}/> : ''}
               </Route >
               <Route exact path="/profile"><Profile /></Route>
             </Switch>

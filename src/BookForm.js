@@ -17,10 +17,10 @@ class BookForm extends React.Component {
       description: '',
       books: [],
       name: '',
-      status:''
+      status:'',
     }
   }
-  
+
   handleNameInput = (e) => {
     this.setState({name: e.target.value});
   }
@@ -30,23 +30,27 @@ class BookForm extends React.Component {
   handleStatusInput = (e) => {
     this.setState({status: e.target.value});
   }
+  // handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   this.fetchUserData();
+  // }
+  // fetchUserData = () => {
 
-  fetchUserData = () => {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${this.state.email}`)
-    .then(serverResponse => {
-      console.log(serverResponse.data);
-      this.setState({
-        gifts: serverResponse.data[0].gifts
-      })
-    });
-  }
+  //   axios.get('http://localhost:3002/users'/this.props.email)
+  //   .then(serverResponse => {
+  //     console.log(serverResponse.data);
+  //     this.setState({
+  //       books: serverResponse.data[0].books
+  //     })
+  //   });
+  // }
 
   handleCreateBook = (e) => {
     e.preventDefault();
     console.log('name', this.state.name, 'description', this.state.description, 'status', this.state.status, 'email', this.props.email);
     // make the request to the server with the info the user typed in
-    axios.post('http://localhost:3002/addbooks', {
-      email: this.props.auth0.email,
+    axios.post('http://localhost:3002/books', {
+      email: this.props.email,
       description: this.state.description,
       status: this.state.status,
       name: this.state.name
@@ -59,14 +63,14 @@ class BookForm extends React.Component {
   }
 
   render() {
-    const { user } = this.props.auth0;
     return(
-      <form onSubmit={this.handleCreateBook}>
+      <form onSubmit={this.handleCreateBook} id="addBookForm">
         <input type="text" onInput={this.handleNameInput} placeholder="Enter your Fav Book"  />
-        <input type="password" onInput={this.handleDescriptionInput} placeholder="DEscription"  />
-        <input type="password"  onInput={this.handleStatusInput} placeholder="Published/On-Progress"  />
+        <input type="text" onInput={this.handleDescriptionInput} placeholder="DEscription"  />
+        <input type="text"  onInput={this.handleStatusInput} placeholder="Published/On-Progress"  />
         <button type="submit" className="myButton">Submit</button>
       </form>
+      
     )
   }
 }
