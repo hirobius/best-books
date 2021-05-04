@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './MyFavoriteBooks.css';
-import BestBooks from './BestBooks';
 import axios from 'axios';
 import { withAuth0 } from '@auth0/auth0-react';
 import './BookForm.css'
@@ -82,7 +81,7 @@ class BookForm extends React.Component {
     return(
       <>
         <Button variant="primary" onClick={this.handleShow}>
-          Launch demo modal
+          Need to fix this button
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>

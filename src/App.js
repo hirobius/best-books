@@ -29,13 +29,15 @@ class App extends React.Component {
   }
   triggerAddBookState = () => {
     this.setState({
-      isAddBookState: true
+      isAddBookState: true,
+      isDeleteBookState: false
     })
   }
 
   triggerDeleteBookState = () => {
     this.setState({
-      isDeleteBookState: true
+      isDeleteBookState: true,
+      isAddBookState: false,
     })
   }
 
@@ -53,8 +55,8 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState} deleteBook={this.triggerDeleteBookState}/> : <Login />}
-                {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email} /> : ''}
-                {this.state.isDeleteBookState? <Books /> : ''}
+                {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email} /> : <Books />}
+                {/* {this.state.isDeleteBookState? <Books /> : ''} */}
               </Route >
               <Route exact path="/profile"><Profile /></Route>
             </Switch>
