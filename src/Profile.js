@@ -4,6 +4,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 
 class Profile extends Component {
   render() {
+    console.log(this.props);
     // `this.props.auth0` has all the same properties as the `useAuth0` hook
     const { user } = this.props.auth0;
     return (
