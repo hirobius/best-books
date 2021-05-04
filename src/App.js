@@ -3,10 +3,12 @@ import Header from './Header';
 import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
 import { withAuth0 } from '@auth0/auth0-react';
-import MyFavoriteBooks from './MyFavoriteBooks';
-import Login from './Login';
+import MyFavoriteBooks from './MyFavoriteBooks'
+import Login from './Login'
 import Profile from './Profile';
-import axios from 'axios';
+import BookForm from './BookForm'
+import Books from './Books'
+
 
 import {
   BrowserRouter as Router,
@@ -19,28 +21,29 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      isAddBookState: false,
+      isDeleteBookState: false,
       books: [],
-      name: ''
+      name: '',
     }
   }
+  triggerAddBookState = () => {
+    this.setState({
+      isAddBookState: true
+    })
+  }
 
-  getAllBooks = async (e) => {
-    e.preventDefault();
-    const SERVER = 'http://localhost:3002/';
-    try {
-      const books = await axios.get(`${SERVER}/books`, {params: { name: this.state.name }});
-      console.log(books.data)
-      this.setState({ books: books.data });
-
-    } catch(error){
-      console.log(error);
-    }
+  triggerDeleteBookState = () => {
+    this.setState({
+      isDeleteBookState: true
+    })
   }
 
   updateName = (name) => this.setState({ name });
-
+  
   render() {
     const { isAuthenticated } = this.props.auth0;
+    console.log('user:',  this.props);
     console.log('app', this.props);
     return(
       <>
@@ -49,9 +52,11 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                {isAuthenticated ? <MyFavoriteBooks /> : <Login />}
+                {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState} deleteBook={this.triggerDeleteBookState}/> : <Login />}
+                {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email} /> : ''}
+                {this.state.isDeleteBookState? <Books /> : ''}
               </Route >
-              <Route exact path="/profile"><Profile getAllBooks={this.getAllBooks} updateName={this.updateName}/></Route>
+              <Route exact path="/profile"><Profile /></Route>
             </Switch>
             <Footer />
           </IsLoadingAndError>
