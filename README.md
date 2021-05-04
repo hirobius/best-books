@@ -12,7 +12,7 @@
 - Run npm start
 - Once the page loads up, click login (Additional code block might be needed that is being used in .env file)
 - Proceed with Auth0 authentication
-- View Profile page to see data data retrieved during login process
+- View Profile page to see data retrieved during login process
 - Click Add/Delete button on home page as needed  
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
