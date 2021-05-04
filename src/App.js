@@ -7,6 +7,7 @@ import MyFavoriteBooks from './MyFavoriteBooks'
 import Login from './Login'
 import Profile from './Profile';
 import BookForm from './BookForm'
+import Books from './Books'
 
 
 import {
@@ -20,16 +21,21 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isEmptyState: true ,
+      isAddBookState: false,
+      isDeleteBookState: false,
       books: [],
       name: '',
     }
   }
   triggerAddBookState = () => {
     this.setState({
-      ...this.state,
-      isEmptyState: false,
       isAddBookState: true
+    })
+  }
+
+  triggerDeleteBookState = () => {
+    this.setState({
+      isDeleteBookState: true
     })
   }
 
@@ -46,8 +52,9 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState}/> : <Login />}
+                {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState} deleteBook={this.triggerDeleteBookState}/> : <Login />}
                 {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email} /> : ''}
+                {this.state.isDeleteBookState? <Books /> : ''}
               </Route >
               <Route exact path="/profile"><Profile /></Route>
             </Switch>

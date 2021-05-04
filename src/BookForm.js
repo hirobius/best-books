@@ -87,12 +87,12 @@ class BookForm extends React.Component {
 
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Add Your Fav Book</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <form onSubmit={this.handleCreateBook} id="addBookForm">
             <input type="text" onInput={this.handleNameInput} placeholder="Enter your Fav Book"  />
-            <input type="text" onInput={this.handleDescriptionInput} placeholder="DEscription"  />
+            <input type="text" onInput={this.handleDescriptionInput} placeholder="Description"  />
             <input type="text"  onInput={this.handleStatusInput} placeholder="Published/On-Progress"  />
             <button type="submit" className="myButton">Submit</button>
           </form>

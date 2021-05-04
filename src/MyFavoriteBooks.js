@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
+import { Button, Row, Col } from 'react-bootstrap';
 import './MyFavoriteBooks.css';
 import BestBooks from './BestBooks'
 
@@ -9,6 +9,7 @@ import BestBooks from './BestBooks'
 class MyFavoriteBooks extends React.Component {
   
   render() {
+    
     return(
       <>
         <Jumbotron>
@@ -16,7 +17,14 @@ class MyFavoriteBooks extends React.Component {
           <p>
             This is a collection of my favorite books
           </p>
-          <Button variant="success" onClick={this.props.addBook}>Add Book</Button>
+          <Row xs={2} md={4} lg={6}>
+            <Col>
+              <Button variant="success" onClick={this.props.addBook}>Add Book</Button>
+            </Col>
+            <Col>
+              <Button variant="success" onClick={this.props.deleteBook}>Delete Book</Button>
+            </Col>
+          </Row>
         </Jumbotron>
         <BestBooks />
       </>
