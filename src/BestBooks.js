@@ -43,9 +43,11 @@ class BestBooks extends Component {
     render() {
         let allBooks = this.state.books.map((book,_id)=>(
             <Carousel.Item key={book._id} style={{textAlign: "center"}}>
-                    <h5>Name: {book.name}</h5>
-                    <p>Description: {book.description}</p>
-                    <p>Status: {book.status}</p>
+              <Carousel.Caption>
+                <h5>Name: {book.name}</h5>
+                <p>Description: {book.description}</p>
+                <p>Status: {book.status}</p>
+              </Carousel.Caption>
             </Carousel.Item>
         ))
         return (

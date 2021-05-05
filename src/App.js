@@ -27,19 +27,19 @@ class App extends React.Component {
       name: '',
     }
   }
-  triggerAddBookState = () => {
-    this.setState({
-      isAddBookState: true,
-      isDeleteBookState: false
-    })
-  }
+  // triggerAddBookState = () => {
+  //   this.setState({
+  //     isAddBookState: true,
+  //     isDeleteBookState: false
+  //   })
+  // }
 
-  triggerDeleteBookState = () => {
-    this.setState({
-      isDeleteBookState: true,
-      isAddBookState: false,
-    })
-  }
+  // triggerDeleteBookState = () => {
+  //   this.setState({
+  //     isDeleteBookState: true,
+  //     isAddBookState: false,
+  //   })
+  // }
 
   updateName = (name) => this.setState({ name });
   
@@ -54,7 +54,7 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState} deleteBook={this.triggerDeleteBookState}/> : <Login />}
+                {isAuthenticated ? <MyFavoriteBooks /> : <Login />}
                 {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email} /> : <Books />}
                 {/* {this.state.isDeleteBookState? <Books /> : ''} */}
               </Route >
