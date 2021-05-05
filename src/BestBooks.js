@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Container from 'react-bootstrap/Container';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import BookForm from './BookForm'
 
 class BestBooks extends Component {
 
@@ -12,11 +13,17 @@ class BestBooks extends Component {
           books: []
         };
       }
-    
+
+    setBooks = (books) => {
+      this.setState({
+        books: books
+      })
+    }
+
     getAllBooks = async () => {
         // e.preventDefault();
         console.log('user', this.props.auth0.user.name)
-        const SERVER = 'http://localhost:3002';
+        const SERVER = process.env.REACT_APP_BACKEND_URL
         try {
         const books = await axios.get(`${SERVER}/books`, {params: { name: this.props.auth0.user.name }});
         console.log(books.data)
@@ -53,7 +60,7 @@ class BestBooks extends Component {
                 <Carousel>
                     {allBooks}
                 </Carousel>
-                
+                <BookForm updatebooks={this.setBooks} email={this.props.auth0.user.email} />
             </Container>
    
         )

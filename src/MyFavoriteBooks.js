@@ -19,9 +19,6 @@ class MyFavoriteBooks extends React.Component {
           </p>
           <Row xs={2} md={4} lg={6}>
             <Col>
-              <Button variant="success" onClick={this.props.addBook}>Add Book</Button>
-            </Col>
-            <Col>
               <Button variant="success" onClick={this.props.deleteBook}>Delete Book</Button>
             </Col>
           </Row>

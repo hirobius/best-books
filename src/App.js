@@ -52,9 +52,9 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                {isAuthenticated ? <MyFavoriteBooks addBook={this.triggerAddBookState} deleteBook={this.triggerDeleteBookState}/> : <Login />}
-                {this.state.isAddBookState? <BookForm email={this.props.auth0.user.email} /> : ''}
-                {this.state.isDeleteBookState? <Books /> : ''}
+                {isAuthenticated ? <MyFavoriteBooks deleteBook={this.triggerDeleteBookState} /> : <Login />}
+                
+                
               </Route >
               <Route exact path="/profile"><Profile /></Route>
             </Switch>
