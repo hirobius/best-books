@@ -17,7 +17,7 @@ class Books extends Component {
     getAllBooks = async () => {
         // e.preventDefault();
         console.log('user', this.props.auth0.user.name)
-        const SERVER = 'http://localhost:3002';
+        const SERVER = 'http://localhost:3001';
         try {
         const books = await axios.get(`${SERVER}/books`, {params: { name: this.props.auth0.user.name }});
         console.log(books.data)

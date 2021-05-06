@@ -53,8 +53,6 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 {isAuthenticated ? <MyFavoriteBooks deleteBook={this.triggerDeleteBookState} /> : <Login />}
-                
-                
               </Route >
               <Route exact path="/profile"><Profile /></Route>
             </Switch>

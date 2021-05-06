@@ -34,7 +34,6 @@ class BookForm extends React.Component {
       ...this.state,
       show: true,
     })
-    this.fetchUserData();
   }
 
   handleNameInput = (e) => {
@@ -65,7 +64,7 @@ class BookForm extends React.Component {
     e.preventDefault();
     console.log('name', this.state.name, 'description', this.state.description, 'status', this.state.status, 'email', this.props.email);
     // make the request to the server with the info the user typed in
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/books`, {
+    axios.post('http://localhost:3001/books', {
       email: this.props.email,
       description: this.state.description,
       status: this.state.status,

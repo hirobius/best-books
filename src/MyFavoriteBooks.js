@@ -4,10 +4,14 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import { Button, Row, Col } from 'react-bootstrap';
 import './MyFavoriteBooks.css';
 import BestBooks from './BestBooks'
+import Books from './Books'
+import axios from 'axios';
+import { FaTrashAlt } from 'react-icons/fa';
 
 
 class MyFavoriteBooks extends React.Component {
-  
+
+   
   render() {
     
     return(
@@ -17,11 +21,7 @@ class MyFavoriteBooks extends React.Component {
           <p>
             This is a collection of my favorite books
           </p>
-          <Row xs={2} md={4} lg={6}>
-            <Col>
-              <Button variant="success" onClick={this.props.deleteBook}>Delete Book</Button>
-            </Col>
-          </Row>
+          <Button variant="success" onClick={this.props.deleteBook}>Delete Book</Button>
         </Jumbotron>
         <BestBooks />
       </>
