@@ -71,6 +71,7 @@ class BookForm extends React.Component {
       name: this.state.name
     }).then( response => {
       console.log(response.data);
+      console.log(this.state);
       this.props.updatebooks(response.data)
       this.handleClose();
     });
