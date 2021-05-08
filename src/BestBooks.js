@@ -3,8 +3,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import Container from 'react-bootstrap/Container';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
-import BookForm from './BookForm'
-import { FaTrashAlt } from 'react-icons/fa';
+// import BookForm from './BookForm'
+import Button from 'react-bootstrap/Button';
+// import { FaTrashAlt } from 'react-icons/fa';
 
 class BestBooks extends Component {
 
@@ -36,27 +37,25 @@ class BestBooks extends Component {
         console.log(error);
         }
     }
+
     componentDidMount() {
         this.getAllBooks()
     }
 
-    handleDelete = (id) => {
-        const SERVER = 'http://localhost:3001'
-        axios.delete(`${SERVER}/books/${id}?user=${this.props.auth0.user.email}`).then(responseData => {
-          this.setState({ 
-            books: responseData.data
-          })
-        })
+    handleDelete = (e) => {
+        console.log(e.target);
+        this.props.deleteBook(e.target.id);
       }
     
     render() {
-        let allBooks = this.state.books.map((book,_id)=>(
+        let allBooks = this.props.books.map((book,_id)=>(
             <Carousel.Item key={book._id} style={{textAlign: "center"}}>
               <Carousel.Caption>
                 <h5>Name: {book.name}</h5>
                 <p>Description: {book.description}</p>
                 <p>Status: {book.status}</p>
               </Carousel.Caption>
+              <Button variant="success" onClick={this.handleDelete} id={book._id}>Delete Book</Button>
             </Carousel.Item>
         ))
         return (
@@ -65,16 +64,8 @@ class BestBooks extends Component {
                 <Carousel>
                     {allBooks}
                 </Carousel>
-                <BookForm updatebooks={this.setBooks} email={this.props.auth0.user.email} />
-                
             </Container>
-            {this.state.books.length > 0 && <ul>
-              {this.state.books.map(book => 
-              <li key={book._id}>{book.name}: {book.description} <button onClick={e => this.handleDelete(book._id)} ><FaTrashAlt /></button></li>
-              )}
-              </ul>}
-          </>  
-   
+          </>
         )
     }
 }
